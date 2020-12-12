@@ -90,5 +90,13 @@ namespace IndianCensusAnalyserTest
                                     censusAnalyser.LoadCensusData(CensusAnalyser.Country.INDIA, wrongIndiaStateCodeFilePath, indianStateCodeHeaders));
             Assert.AreEqual(CensusAnalyserException.ExceptionType.NO_SUCH_FILE_TYPE, censusException.type);
         }
+
+        [Test]
+        public void GivenWrongDelimiterIndianStateCodeFile_WhenRead_ShouldThrowException()
+        {
+            var censusException = Assert.Throws<CensusAnalyserException>(() =>
+                                    censusAnalyser.LoadCensusData(CensusAnalyser.Country.INDIA, delimeterIndianStateCodeFilePath, indianStateCodeHeaders));
+            Assert.AreEqual(CensusAnalyserException.ExceptionType.INCORRECT_DELIMITER, censusException.type);
+        }
     }
 }
