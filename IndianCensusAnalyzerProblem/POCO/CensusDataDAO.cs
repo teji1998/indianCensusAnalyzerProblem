@@ -11,7 +11,7 @@ namespace IndianCensusAnalyzerProblem.POCO
         public long area;
         public long density;
 
-        public CensusDataDAO(string state, long population,long area, long density)
+        public CensusDataDAO(string state, string population,string area, string density)
         {
             this.state = state;
             this.population = Convert.ToInt32(population);
