@@ -9,7 +9,7 @@ namespace IndianCensusAnalyserTest
     public class Tests
     {
         static string indianStateCensusHeaders = "State,Population,AreaInSqKm,DensityPerSqKm";
-        static string indianStateCodHeaders = "SrNo,State Name,TIN,StateCode";
+        static string indianStateCodeHeaders = "SrNo,State Name,TIN,StateCode";
 
         //File paths
         static string indianStateCensusFilePath = @"C:\Users\PRITHVIL5\source\repos\IndianCensusAnalyzerProblem\IndianCensusAnalyserTest\CSVFiles\IndiaStateCensusData.csv";
@@ -66,6 +66,13 @@ namespace IndianCensusAnalyserTest
         {
             var censusException = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(CensusAnalyser.Country.INDIA, wrongHeaderIndianCensusFilePath, indianStateCensusHeaders));
             Assert.AreEqual(CensusAnalyserException.ExceptionType.INCORRECT_HEADER, censusException.type);
+        }
+
+        [Test]
+        public void givenIndianStateCodeFile_WhenReaded_ShoulReturnException()
+        {
+            stateRecords = censusAnalyser.LoadCensusData(Country.INDIA, indianStateCodeFilePath, indianStateCodeHeaders);
+            Assert.AreEqual(37, stateRecords.Count);
         }
     }
 }
