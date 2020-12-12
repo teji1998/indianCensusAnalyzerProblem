@@ -55,10 +55,17 @@ namespace IndianCensusAnalyserTest
         }
 
         [Test]
-        public void givenWrongDelimiterIndianCensusFile_WhenReaded_ShouldReturnException()
+        public void givenWrongDelimiterOfIndianCensusFile_WhenReaded_ShouldThrowException()
         {
             var censusException = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(CensusAnalyser.Country.INDIA, delimeterIndianCensusFilePath, indianStateCensusHeaders));
             Assert.AreEqual(CensusAnalyserException.ExceptionType.INCORRECT_DELIMITER, censusException.type);
+        }
+
+        [Test]
+        public void givenWrongHeaderFileOFIndianCensusFile_WhenRead_ShouldThrowException()
+        {
+            var censusException = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(CensusAnalyser.Country.INDIA, wrongHeaderIndianCensusFilePath, indianStateCensusHeaders));
+            Assert.AreEqual(CensusAnalyserException.ExceptionType.INCORRECT_HEADER, censusException.type);
         }
     }
 }
